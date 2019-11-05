@@ -17,7 +17,7 @@
       <van-tabbar-item replace to="/user/1/abcd" icon>标签</van-tabbar-item>
     </van-tabbar>
 
-    <!-- <FooterBar :msg="desc"></FooterBar> -->
+    <FooterBar msg="/login"></FooterBar>
     <!-- <van-button type="default">默认按钮</van-button>
     <van-button type="primary">主要按钮</van-button>
     <van-button type="info">信息按钮</van-button>
@@ -27,13 +27,13 @@
 </template>
 
 <script>
-// import FooterBar from "_c/FooterBar";
+import FooterBar from "_c/FooterBar";
 import { Button } from "vant";
 import { Tabbar, TabbarItem } from "vant";
 // Vue.use(Tabbar).use(TabbarItem);
 export default {
   components: {
-    // FooterBar,
+    FooterBar,
     [Button.name]: Button,
     [Tabbar.name]: Tabbar,
     [TabbarItem.name]: TabbarItem

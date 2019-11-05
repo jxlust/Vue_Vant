@@ -1,5 +1,14 @@
 <template>
-  <div>我是底部哈哈哈哈{{msg}}</div>
+  
+  <div>
+    <router-link :to="msg">login</router-link>
+    我是底部哈哈哈哈{{msg}}
+  <!-- <div>
+  <a v-bind:href="msg">aaaa</a>
+  </div> -->
+
+  </div>
+ 
 </template>
 
 <style lang="scss" scoped>
