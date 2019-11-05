@@ -22,7 +22,6 @@ module.exports = {
             },
         }
     },
-
     // 多页面打包
     /* pages: {
         page1: {
