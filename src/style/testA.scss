@@ -1,0 +1,21 @@
+@import './test';
+.box{
+    width: 100px;
+    height: 100px;
+    @include solid(#ff0000);
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(50%);
+    .content{
+        width: 50px;
+        height: 50px;
+        background-image: url(../assets/images/menu1.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-origin: 50% 50%;
+        background-size: 100% 100%;
+        // background-color: #f8f8f8;
+    }
+}

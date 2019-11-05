@@ -1,0 +1,38 @@
+.f-box{
+    position: fixed;
+    z-index: 9999;
+    background-color: #fff;
+    display: flex;
+    width: 100%;
+    height: 50px;
+    align-items: center;
+    // flex-direction: column;
+    flex-direction: row;
+    width: 200px;
+    >div{
+        width: 100px;
+        height: 30px;
+        // flex-basis: 100px;
+        flex-basis: auto;
+    }
+    .item1{
+        background-color: #ff0000;
+        // flex-shrink: 0;
+        flex-grow: 2;
+        flex-shrink: 1;
+        // flex: 1 等价于 flex: 1 1 auto;
+    }
+    .item2{
+        flex-grow: 1;
+        background-color: #ff88ff;
+
+    }
+    .item3{
+        flex-grow: 1;
+        background-color: #999;
+    }
+    .item4{
+        // flex-grow: 2;
+        background-color: #cccccc;
+    }
+}

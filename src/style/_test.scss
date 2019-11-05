@@ -1,0 +1,3 @@
+@mixin solid($color: #fff) {
+    border: 2px solid $color;
+}

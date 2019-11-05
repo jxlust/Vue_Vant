@@ -1,0 +1,135 @@
+@import './flex-box';
+.box {
+    background: transparent;
+}
+
+.app-main {}
+
+.loading-wrap {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(13, 30, 207, 0.8);
+    transition: all 0.5s ease 0s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .loadingImg {
+        width: 291px;
+        height: 292px;
+        animation: spinRotate 15s linear 0s infinite normal none;
+    }
+}
+
+.bottom-wrap {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(13, 30, 207, 0.8);
+    transition: all 0.5s ease 0s;
+}
+
+.bottom-end {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+
+}
+
+.bottom-content {
+    width: 100%;
+    min-height: 200px;
+    display: flex;
+    box-sizing: content-box;
+    padding: 45px 125px;
+    background-color: rgb(13, 30, 207);
+    justify-content: space-between;
+    align-items: center;
+    transform: translateY(0px);
+    opacity: 1;
+    transition: all 0.5s ease 0.5s;
+    animation: bottomInto 0.5s ease 0.5s 1 normal none;
+
+    .Title-jxl {
+        font-size: 18px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.33;
+        letter-spacing: normal;
+        color: rgb(41, 231, 214);
+        margin-bottom: 10px;
+    }
+
+    .Text-jxl {
+        max-width: 760px;
+        font-size: 12px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 2;
+        letter-spacing: normal;
+        color: rgb(255, 255, 255);
+    }
+
+    .Button-jxl {
+        width: 200px;
+        height: 60px;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 30px 0px;
+        color: rgb(0, 0, 120);
+        font-family: Mark-Book, sans-serif;
+        font-size: 14px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1;
+        letter-spacing: normal;
+        padding-left: 30px;
+        padding-right: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        border-radius: 30px;
+        border: unset;
+        background: linear-gradient(to left, rgb(41, 231, 214) 50%, rgb(0, 0, 120) 50%) right bottom / 200% 100%;
+        // background-position: right bottom;
+        transition: all 0.5s ease 0s;
+        &:hover{
+            color: rgb(41, 231, 214);
+            //fill: rgb(41, 231, 214);
+            background-position: left bottom;
+            border: unset;
+        }
+    }
+}
+
+@keyframes spinRotate {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(359deg);
+    }
+}
+
+@keyframes bottomInto {
+    0% {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
