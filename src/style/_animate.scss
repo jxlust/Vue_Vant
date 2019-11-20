@@ -1,0 +1,182 @@
+//动画效果
+@keyframes anim-out {
+    0% {
+        width: 0
+    }
+
+    100% {
+        width: 100%
+    }
+}
+
+@keyframes anim-out-pseudo {
+    0% {
+        background: rgba(0, 0, 0, 0.25)
+    }
+
+    100% {
+        background: transparent
+    }
+}
+
+//旋转效果
+@keyframes rotateAni {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(90deg);
+    }
+
+    50% {
+        transform: rotate(180deg);
+    }
+
+    75% {
+        transform: rotate(270deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+//我的过度动效
+.jxlview-anim-00 {
+    animation: view-bounceIn;
+}
+
+.jxlview-anim-01 {
+    animation: view-bounceIn;
+}
+
+//放大效果
+@keyframes view-bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(.5)
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1)
+    }
+}
+
+//底部进入效果
+@keyframes view-zoomInDown {
+    0% {
+        opacity: 0;
+        transform: scale(.1) translateY(-2000px);
+        animation-timing-function: ease-in-out
+    }
+
+    60% {
+        opacity: 1;
+        transform: scale(.475) translateY(60px);
+        animation-timing-function: ease-out
+    }
+}
+
+@keyframes scale-animation {
+    0% {
+        opacity: .5;
+        transform: scale(.5)
+    }
+
+    80% {
+        opacity: .8;
+        transform: scale(1.1)
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1)
+    }
+}
+
+
+@keyframes layer_card_ani {
+    0% {
+        transform: translateZ(0) scale(.90);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateZ(0) scale(1);
+        opacity: 1;
+    }
+}
+
+.layer-card-animation {
+    animation: layer_card_ani .2s ease backwards;
+}
+
+
+.anim {
+    -moz-transform: translateY(-50%) translateX(-50%);
+    -ms-transform: translateY(-50%) translateX(-50%);
+    -webkit-transform: translateY(-50%) translateX(-50%);
+    transform: translateY(-50%) translateX(-50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: -1;
+}
+
+.anim:before {
+    position: relative;
+    content: '';
+    display: block;
+    margin-top: 100%;
+}
+
+.anim:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 50%;
+}
+
+.hoverable .anim {
+    -moz-animation: anim-out .75s;
+    -webkit-animation: anim-out .75s;
+    animation: anim-out .75s;
+}
+
+.hoverable .anim:after {
+    -moz-animation: anim-out-pseudo .75s;
+    -webkit-animation: anim-out-pseudo .75s;
+    animation: anim-out-pseudo .75s;
+}
+
+.hoverable .anim,
+.hoverable .anim:after {
+    animation-iteration-count: infinite;
+    animation-duration: 1.3s;
+}
+
+//鼠标移入动画展示一次
+@mixin animHover() {
+    &:hover {
+        .anim {
+            animation: anim-out .75s;
+            animation-iteration-count: 1;
+            animation-duration: 1.3s;
+
+            &::after {
+                animation: anim-out-pseudo .75s;
+                animation-iteration-count: 1;
+                animation-duration: 1.3s;
+            }
+        }
+    }
+}

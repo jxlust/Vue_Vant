@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
+import Shop from './views/Shop.vue'
 import PrintTxt from './components/PrintTxt.vue'
 Vue.use(Router)
 
@@ -20,6 +21,13 @@ export default new Router({
     },
     {
       path: '/',
+      name: 'shop',
+      //命名视图
+      component: Shop
+      
+    },
+    {
+      path: '/home',
       name: 'home',
       //命名视图
       components: {

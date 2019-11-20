@@ -1,0 +1,96 @@
+/* sass基本使用 */
+$primary-color: #1ABC9C;
+$gray-99: #999;
+a{
+	text-decoration: none
+}
+
+@mixin justify(){
+  text-align: justify;
+  &:after{
+	  content: "";
+	  padding-left: 100%;
+	  display: inline-block;
+  }
+}
+.myjustify{
+	@include justify();
+}
+.primary-color{
+	color: $primary-color;
+	h2{
+		color: $primary-color
+	}
+	.test2{
+		
+	}
+	&:hover{
+		color: $gray-99;
+	}
+}
+
+.class2{
+	@extend .class3;	
+	font-size: 120%;
+}
+
+@mixin left($value: 10px) {
+	float: left;
+	margin-left: $value;
+}
+
+.class3{
+	@include left(20px);
+}
+
+@mixin tanslation($value: all,$time: 1s) {
+	transition: $value $time;
+	-webkit-transition: $value $time;
+	-os-transition: $value $time;
+	-moz-transition: $value $time;
+}
+.class4{
+	@include tanslation(color,0.5s);
+}
+/* 导入 */
+// @import "xx.css"
+// @import "path/xx.scss"
+@function double($v){
+	@return $v * 2;
+}
+@for $i from 1 to 10{
+	.border-#{$i}{
+		$border-width: $i * 2px;
+		border: #{$border-width} solid $gray-99
+	}
+}
+.class5{
+	border: double(4px) solid $gray-99
+}
+$value : 0;
+.class6{
+	@if($value == 5){
+		background-color: #555;
+	}@else{
+		background-color: #666;
+	}
+}
+
+.one {
+	width:100px;height:100px;
+}
+.two {
+	/*继承的样式*/
+	@extend .one, .three;
+	@extend %four;
+	/*独立的样式*/
+	background:red;
+	border:5px solid #000;
+}
+.three {
+	padding:10px;
+}
+/* 占位，不会被编译 */
+%four{
+	background-color: #000;
+}

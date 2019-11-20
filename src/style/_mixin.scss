@@ -1,0 +1,188 @@
+$primary-color: #42b983;
+$primary-highlight: #29d6b4;
+$gray-99: #999;
+$gray-33: #333;
+$gray-66: #666;
+$gray-22: #222222;
+$white: #ffffff;
+$gray-ee: #eeeeee;
+// hack
+$hack: '\9';
+
+$img-dev-url: '/zixuev2/images/';
+// $img-dev-url: 'http://static.dev.3d66.com/zixuev2/images/';
+
+@mixin clearfix() {
+	zoom: 1;
+	&::after {
+		display: block;
+		content: "";
+		clear: both;
+		visibility: hidden;
+		height: 0;
+	}
+}
+
+@mixin text-truncate {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+@mixin break-all {
+	word-break: break-all;
+	white-space: normal;
+}
+@mixin line-clamp($value: 3) {
+	word-break: break-all;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: $value;
+	line-clamp: $value;
+	overflow: hidden;
+}
+
+@mixin flex-justify-between {
+	flex-wrap: wrap;
+	display: flex;
+	justify-content: space-between;
+}
+
+@mixin border-radius($value: 4px) {
+	border-radius: $value;
+}
+
+@mixin border($value: 1px, $way: solid, $color: #fff) {
+	border: $value $way $color;
+}
+
+@mixin prefix-css($attr, $css) {
+	-moz-#{$attr}: $css;
+	-webkit-#{$attr}: $css;
+	-o-#{$attr}: $css;
+	#{$attr}: $css;
+}
+
+@mixin transition($style: all, $time: 0.1s) {
+	-moz-transition: $style $time;
+	-webkit-transition: $style $time;
+	-o-transition: $style $time;
+	-ms-transition: $style $time;
+	transition: $style $time;
+}
+
+@mixin transition-all($pro: all, $dur: 1s, $fun: linear, $delay: 0s) {
+	/* transition: property duration timing-function delay; */
+	-webkit-transition: $pro $dur $fun $delay;
+	-moz-transition: $pro $dur $fun $delay;
+	-o-transition: $pro $dur $fun $delay;
+	transition: $pro $dur $fun $delay;
+}
+
+@mixin arrow-top($value: 1px, $color: #fff) {
+	position: absolute;
+	display: inline-block;
+	width: 0;
+	height: 0;
+	content: '';
+	border-bottom: $value dashed $color;
+	border-bottom: $value solid\9 $color;
+	border-right: $value solid transparent;
+	border-left: $value solid transparent;
+}
+
+@mixin justify() {
+	text-align: justify;
+	text-justify: distribute-all-lines; // 这行必加，兼容ie浏览器
+
+	&:after {
+		content: '';
+		// padding-left: 100%;
+		display: inline-block;
+	}
+}
+
+@mixin justify-last() {
+	text-align-last: justify;
+	text-align: justify;
+	text-justify: distribute-all-lines; // 这行必加，兼容ie浏览器
+
+	&:after {
+		content: '';
+		// padding-left: 100%;
+		display: inline-block;
+	}
+}
+
+@mixin roundImg($px) {
+	border-radius: 50%;
+	width: $px;
+	height: $px;
+}
+
+@mixin triggle($border-width, $border-height, $border-color, $dire) {
+	&:before {
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: inline-block;
+		width: 0;
+		height: 0;
+		content: '';
+		border-left-width: $border-height;
+		border-right-width: $border-height;
+		border-top-width: $border-width;
+		border-bottom-width: $border-width;
+		border-style: solid;
+		border-color: transparent;
+		border-#{$dire}-color: $border-color;
+		@content;
+	}
+
+	&:after {}
+}
+
+@mixin triggle-empty($width, $deg, $boder-width, $color, $bg-color) {
+	&::after {
+		position: absolute;
+		top: 0;
+		left: 0;
+		content: '';
+		width: $width;
+		height: $width;
+		background-color: $bg-color;
+		border-left: $boder-width solid $color;
+		border-bottom: $boder-width solid $color;
+		transform: rotate($deg);
+		-webkit-transform: rotate($deg);
+		border-right: $boder-width solid transparent;
+		border-top: $boder-width solid transparent;
+	}
+}
+
+@mixin solidBtn($bgColor, $radius, $txtColor: $white) {
+	border-radius: $radius;
+	cursor: pointer;
+	background-color: $bgColor;
+	color: $txtColor;
+	text-align: center;
+	@content;
+}
+
+@mixin hollowBtn($bgcolor, $radius, $boder-width:1px) {
+	border-radius: $radius;
+	cursor: pointer;
+	border: $boder-width solid $bgcolor;
+	color: $bgcolor;
+	text-align: center;
+	@content;
+}
+
+@mixin keyframesAuto($name) {
+	// @-moz-keyframes $content;
+	// @-webkit-keyframes $content;
+	// @-o-keyframes $content;
+	// @-ms-keyframes $content;
+	@keyframes #{$name}{
+		@content;
+	}
+}

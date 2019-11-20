@@ -6,37 +6,37 @@
       <router-link to="/login">login</router-link>
     </div>
     <router-view />-->
+
+    <van-nav-bar
+      title="你是我的奶茶哦"
+      left-text="返回"
+      left-arrow
+      @click-left="onClickLeft"
+      @click-right="onClickRight"
+    >
+      <van-icon name="location-o" size="20px" slot="right" />
+    </van-nav-bar>
+
     <transition-group name="fade" mode="out-in">
       <router-view key="1" />
-      <router-view key="2" class="aaaa" name="a" />
+      <!-- <router-view key="2" class="order" name="order" /> -->
     </transition-group>
-
-    <van-tabbar route>
-      <van-tabbar-item replace to="/goods-1" icon="home-o">标签</van-tabbar-item>
-      <van-tabbar-item replace to="/card" icon="search">标签</van-tabbar-item>
-      <van-tabbar-item replace to="/user/1/abcd" icon>标签</van-tabbar-item>
-    </van-tabbar>
-
-    <FooterBar msg="/login"></FooterBar>
-    <!-- <van-button type="default">默认按钮</van-button>
-    <van-button type="primary">主要按钮</van-button>
-    <van-button type="info">信息按钮</van-button>
-    <van-button type="warning">警告按钮</van-button>
-    <van-button type="danger">危险按钮</van-button>-->
   </div>
 </template>
 
 <script>
 import FooterBar from "_c/FooterBar";
-import { Button } from "vant";
-import { Tabbar, TabbarItem } from "vant";
+import { Button, NavBar, Toast, Icon } from "vant";
+
+// Vue.use(Toast);
+// import { Tabbar, TabbarItem } from "vant";
 // Vue.use(Tabbar).use(TabbarItem);
 export default {
   components: {
-    FooterBar,
+    // FooterBar,
     [Button.name]: Button,
-    [Tabbar.name]: Tabbar,
-    [TabbarItem.name]: TabbarItem
+    [NavBar.name]: NavBar,
+    [Icon.name]: Icon
   },
   data() {
     return {
@@ -46,12 +46,20 @@ export default {
   mounted() {},
   created() {},
   updated() {},
+  methods: {
+    onClickLeft() {
+      Toast("返回");
+    },
+    onClickRight() {
+      Toast("按钮");
+    }
+  },
   destroyed() {}
 };
 </script>
-<style lang="stylus">
+<style lang="scss">
 #mytest {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -69,5 +77,20 @@ export default {
       color: #42b983;
     }
   }
+}
+.van-nav-bar .van-icon {
+  color: #fff;
+}
+.van-nav-bar__text {
+  color: #fff;
+}
+.van-nav-bar__title {
+  color: #fff;
+}
+.van-nav-bar__text:active {
+  background-color: #055531;
+}
+.van-nav-bar {
+  background-color: #318866;
 }
 </style>
