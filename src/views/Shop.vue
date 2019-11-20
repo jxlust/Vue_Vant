@@ -1,15 +1,29 @@
 <template>
   <div class="shop">
     <van-notice-bar text="一杯xxx送好多杯哦哦，通知小伙伴们，快来抢购嘟噜嘟噜啦啦啦啦啦啦啦啦啦！" left-icon="volume-o" />
-    <div class="content"></div>
+    <div class="content">
+      <!-- 左侧导航 -->
+      <van-sidebar v-model="activeKey" @change="sidebarChange">
+        <van-sidebar-item @click="sidebarClick" title="店长推荐" dot />
+        <van-sidebar-item @click="sidebarClick" title="新品哟哟" info="5" />
+        <van-sidebar-item @click="sidebarClick" title="热销产品" />
+        <van-sidebar-item @click="sidebarClick" title="美容养颜" />
+        <van-sidebar-item @click="sidebarClick" title="找好茶" />
+      </van-sidebar>
+      <!-- 右侧内容 -->
+      <div class="right-content">
+        <van-image width="100" height="100" lazy-load src="https://img.yzcdn.cn/public_files/2017/10/24/e5a5a02309a41f9f5def56684808d9ae.jpeg" />
+
+      </div>
+    </div>
 
     <van-submit-bar :price="3050" button-text="提交订单" @submit="onSubmit">
       <!-- <van-checkbox v-model="checked">全选</van-checkbox> -->
-       <van-goods-action-icon icon="cart-o" text="购物车" info="5" />
+      <van-goods-action-icon icon="cart-o" text="购物车" info="5" />
       <!-- <span slot="tip">
         你的收货地址不支持同城送,
         <span>修改地址</span>
-      </span> -->
+      </span>-->
     </van-submit-bar>
   </div>
 </template>
@@ -19,18 +33,34 @@
 
 import { apiAddress } from "@/reuqest/api";
 import { mapState, mapActions, mapGetters } from "vuex";
-import { NoticeBar, Checkbox, SubmitBar, GoodsActionIcon, } from "vant";
+// import Vue from 'vue'
+import {
+  NoticeBar,
+  Checkbox,
+  SubmitBar,
+  GoodsActionIcon,
+  Sidebar,
+  SidebarItem,
+  Sticky,
+  Image
+} from "vant";
+
 export default {
   name: "shop",
   components: {
     [NoticeBar.name]: NoticeBar,
     [SubmitBar.name]: SubmitBar,
     [Checkbox.name]: Checkbox,
-    [GoodsActionIcon.name]: GoodsActionIcon
+    [GoodsActionIcon.name]: GoodsActionIcon,
+    [Sidebar.name]: Sidebar,
+    [SidebarItem.name]: SidebarItem,
+    [Sticky.name]: Sticky,
+    [Image.name]: Image
   },
   data() {
     return {
-      checked: true
+      checked: true,
+      activeKey: 0
     };
   },
   computed: {
@@ -68,6 +98,12 @@ export default {
       apiAddress().then(res => {
         console.log(res);
       });
+    },
+    sidebarClick(index) {
+      console.log("index", index);
+    },
+    sidebarChange(index) {
+      console.log("c", index);
     },
     onSubmit() {
       console.log("提交...");

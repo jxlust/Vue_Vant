@@ -1,7 +1,18 @@
-@import  './mixin';
-.fixed-bottom{
+@import './mixin';
+
+.fixed-bottom {
     position: fixed;
     bottom: 0;
     right: 0;
     font-size: 34px;
+}
+
+.content {
+    display: flex;
+
+}
+
+.right-content {
+    flex: 1;
+    background-color: #8f8f8f;
 }
