@@ -5,6 +5,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store/index'
 
+import '@/style/normal/pxCommon.scss';
 // Vue.component([Toast.name],Toast);
 // import './mock/index'
 Vue.config.productionTip = false

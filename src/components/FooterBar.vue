@@ -23,6 +23,11 @@ export default {
   name: "FooterBar",
   props: {
     msg: String
-  }
+  },
+  data() {
+    return {
+      name:'lp'  
+    }
+  },
 };
 </script>

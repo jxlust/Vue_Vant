@@ -4,16 +4,26 @@
     <div class="content">
       <!-- 左侧导航 -->
       <van-sidebar v-model="activeKey" @change="sidebarChange">
-        <van-sidebar-item @click="sidebarClick" title="店长推荐" dot />
-        <van-sidebar-item @click="sidebarClick" title="新品哟哟" info="5" />
-        <van-sidebar-item @click="sidebarClick" title="热销产品" />
-        <van-sidebar-item @click="sidebarClick" title="美容养颜" />
-        <van-sidebar-item @click="sidebarClick" title="找好茶" />
+        <van-sidebar-item
+          @click="sidebarClick"
+          :title="item.name"
+          :key="item.key"
+          :dot="(item.id == 1)? true: false"
+          v-for="item in sorts"
+        />
       </van-sidebar>
       <!-- 右侧内容 -->
-      <div class="right-content">
-        <van-image width="100" height="100" lazy-load src="https://img.yzcdn.cn/public_files/2017/10/24/e5a5a02309a41f9f5def56684808d9ae.jpeg" />
+      <div class="right-content" ref="rightContent">
+        <van-image fit="contain" lazy-load src="https://img.yzcdn.cn/vant/cat.jpeg" />
+        <!-- 右侧导航 -->
+        <div class="item-wrap" :key="item.key" v-for="item in sorts">
+          <van-sticky :offset-top="86" @scroll="navScroll($event,item)" :z-index="(100+item.id)">
+            <div class="nav-item">{{item.name}}</div>
+          </van-sticky>
+          <div class="test"></div>
+        </div>
 
+        <Footer msg="user" ref="footer"></Footer>
       </div>
     </div>
 
@@ -30,10 +40,10 @@
 
 <script>
 // @ is an alias to /src
-
+import Vue from "vue";
 import { apiAddress } from "@/reuqest/api";
 import { mapState, mapActions, mapGetters } from "vuex";
-// import Vue from 'vue'
+import Footer from "@/components/FooterBar";
 import {
   NoticeBar,
   Checkbox,
@@ -42,9 +52,11 @@ import {
   Sidebar,
   SidebarItem,
   Sticky,
-  Image
+  Image,
+  Lazyload
 } from "vant";
 
+Vue.use(Lazyload);
 export default {
   name: "shop",
   components: {
@@ -55,12 +67,22 @@ export default {
     [Sidebar.name]: Sidebar,
     [SidebarItem.name]: SidebarItem,
     [Sticky.name]: Sticky,
-    [Image.name]: Image
+    [Image.name]: Image,
+    Footer
+    // 'footer-bar':FooterBar
   },
   data() {
     return {
       checked: true,
-      activeKey: 0
+      activeKey: -1,
+      container: null,
+      sorts: [
+        { name: "店长推荐", id: 1, key: 0 },
+        { name: "新品哟哟", id: 2, key: 1 },
+        { name: "热销产品", id: 3, key: 2 },
+        { name: "美容养颜", id: 4, key: 3 },
+        { name: "找好茶", id: 5, key: 4 }
+      ]
     };
   },
   computed: {
@@ -70,13 +92,20 @@ export default {
       return this.$route.params;
     }
   },
+  mounted() {
+    console.log(1, this.$refs.footer.name);
+    this.container = this.$refs.rightContent;
+    this.sorts.forEach(v => {
+      v["lists"] = [1, 2, 3, 4, 5];
+    });
+  },
   created() {
     console.log(this);
     console.log("route params:", this.$route);
     // this.load()
     this.actionGetList()
       .then(data => {
-        // console.log('data:',data);
+        console.log("data:", data);
         // this.$router.push('/user');
       })
       .catch(e => {
@@ -101,13 +130,28 @@ export default {
     },
     sidebarClick(index) {
       console.log("index", index);
+      let itemArr = document.querySelectorAll('.right-content .item-wrap');
+      let $rightContent = document.querySelector('.right-content');
+      console.log('arr:',itemArr);
+      console.log('top',itemArr[0].offsetTop);
+      let top = itemArr[index].offsetTop;
+      $rightContent.scrollTop = top;
+      
+
+    },
+    navScroll(obj, item) {
+      // console.log(99, obj);
+      if (obj.isFixed) {
+        this.activeKey = item.key;
+      }
     },
     sidebarChange(index) {
       console.log("c", index);
+
     },
     onSubmit() {
       console.log("提交...");
-    },
+    }
     // add(n){
     //   this.$store.dispatch('actionsAddCount',n)
     //     // this.count = this.$store.state.count
@@ -116,9 +160,6 @@ export default {
     //   this.$store.dispatch('actionsDisCount',n)
     //     // this.count = this.$store.state.count
     // }
-    goBack() {
-      window.history.length > 1 ? this.$router.go(-1) : this.$router.push("/");
-    }
   }
 };
 </script>

@@ -48,7 +48,11 @@ export default {
   updated() {},
   methods: {
     onClickLeft() {
-      Toast("返回");
+      // Toast("返回");
+      this.goBack();
+    },
+    goBack() {
+      window.history.length > 1 ? this.$router.go(-1) : this.$router.push("/");
     },
     onClickRight() {
       Toast("按钮");
@@ -58,12 +62,17 @@ export default {
 };
 </script>
 <style lang="scss">
+body,
+html {
+  overflow: hidden;
+}
 #mytest {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  // text-align: center;
   color: #2c3e50;
+  overflow: hidden;
 }
 
 #nav {
@@ -90,7 +99,7 @@ export default {
 .van-nav-bar__text:active {
   background-color: #055531;
 }
-.van-nav-bar {
+.van-nav-bar{
   background-color: #318866;
 }
 </style>

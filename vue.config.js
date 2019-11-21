@@ -69,7 +69,7 @@ module.exports = {
                         // propWhiteList: ['font', 'font-size', 'line-height', 'letter-spacing'],  //默认值是一个空数组，这意味着禁用白名单并启用所有属性。
                         // propList: ['font', 'font-size', 'line-height', 'letter-spacing'],
                         // propBlackList: ['font', 'font-size', 'line-height', 'letter-spacing'], //黑名单
-                        exclude: /(node_module)/,
+                        exclude: /(node_module)|(normal)/,
                         // selectorBlackList: [], //要忽略并保留为px的选择器
                         // ignoreIdentifier: false,  //（boolean/string）忽略单个属性的方法，启用ignoreidentifier后，replace将自动设置为true。
                         // replace: true, // （布尔值）替换包含REM的规则，而不是添加回退。

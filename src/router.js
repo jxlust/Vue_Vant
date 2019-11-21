@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Shop from './views/Shop.vue'
 import PrintTxt from './components/PrintTxt.vue'
+import ErrorPage from '@/views/404.vue'
 Vue.use(Router)
 
 function dynamicPropsFn(route) {
@@ -17,7 +18,7 @@ export default new Router({
   routes: [{
       path: '*',
       name: "404",
-      component: () => import('./views/404.vue')
+      component: ErrorPage
     },
     {
       path: '/',
@@ -52,7 +53,7 @@ export default new Router({
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import( /* webpackChunkName: "about" */ './views/login.vue'),
+      component: () => import( /* webpackChunkName: "login" */ './views/login.vue'),
       // beforeEnter(to, from, next) {
       //   console.log('from', from);
       //   console.log('to', to);
@@ -66,7 +67,7 @@ export default new Router({
           path: 'print',
           name: 'cardPrint',
           alias: ['lg', '/cardin'], //别名： print <==> lg , /card/print <==> /in 
-          component: () => import('@/components/PrintTxt.vue')
+          component: () => import(/* webpackChunkName: "printtxt" */ '@/components/PrintTxt.vue')
           // component: PrintTxt
         },
         /*{
@@ -74,18 +75,18 @@ export default new Router({
                component: PrintTxt
              }*/
       ],
-      component: () => import('@/views/CardGoods.vue')
+      component: () => import(/* webpackChunkName: "cardgoods" */ '@/views/CardGoods.vue')
     },
     {
       path: '/goods-*',
       name: 'goods',
-      component: () => import('@/views/Goods.vue')
+      component: () => import(/* webpackChunkName: "goods" */ '@/views/Goods.vue')
     },
     {
       path: '/user/:id/:name',
       name: 'user',
       props: dynamicPropsFn,
-      component: () => import('@/views/User.vue')
+      component: () => import(/* webpackChunkName: "user" */ '@/views/User.vue')
     },
   ],
   scrollBehavior(to, from, savedPosition) {

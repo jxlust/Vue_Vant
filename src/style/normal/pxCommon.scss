@@ -1,0 +1,11 @@
+.right-content {
+    max-height: calc(100vh - 136px);
+}
+.van-sticky--fixed {
+    left: 85px;
+    .nav-item{
+        height: 60px;
+        line-height: 60px;
+        
+    }
+}
