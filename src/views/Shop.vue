@@ -132,11 +132,8 @@ export default {
       console.log("index", index);
       let itemArr = document.querySelectorAll('.right-content .item-wrap');
       let $rightContent = document.querySelector('.right-content');
-      console.log('arr:',itemArr);
-      console.log('top',itemArr[0].offsetTop);
       let top = itemArr[index].offsetTop;
       $rightContent.scrollTop = top;
-      
 
     },
     navScroll(obj, item) {
